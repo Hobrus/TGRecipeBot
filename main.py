@@ -11,4 +11,11 @@ dp = aiogram.Dispatcher(bot)
 
 @dp.message_handler(commands=['start'])
 async def send_message(message: aiogram.types.Message):
-    await message.reply("Hello")
+    await message.reply("Привет! Я бот с рецептами, когда ты присылаешь мне ингедиенты, я высылаю тебе рецепты")
+
+
+@dp.message_handler()
+async def echo(message: aiogram.types.Message):
+    await message.answer(message.text)
+
+aiogram.executor.start_polling(dp, skip_updates=True)
