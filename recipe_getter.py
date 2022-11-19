@@ -34,4 +34,10 @@ def get_url_recipes(*ids):
     return list_urls
 
 
-print(get_url_recipes(parse_answer_for_ids(get_raw_answer_ids('egg', 'sugar'))))
+def get_urls_from_ingridients(*ingridients_raw):
+    raw_answer = get_raw_answer_ids(*ingridients_raw)
+    ids = parse_answer_for_ids(raw_answer)
+    urls = get_url_recipes(ids)
+    return urls
+
+#print(get_url_recipes(parse_answer_for_ids(get_raw_answer_ids('egg', 'sugar'))))
