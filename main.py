@@ -16,7 +16,6 @@ async def send_message(message: aiogram.types.Message):
 
 @dp.message_handler()
 async def echo(message: aiogram.types.Message):
-    if message.text == "Привет":
-        await message.answer(message.text)
+    await message.answer(message.text)
 
 aiogram.executor.start_polling(dp, skip_updates=True)
