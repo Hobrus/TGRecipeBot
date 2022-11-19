@@ -8,10 +8,8 @@ def get_raw_answer_ids(*ingridients_raw):
     ingredients = ingridients_raw[0]
     for i in range(1, len(ingridients_raw)):
         ingredients += ',+' + ingridients_raw[i]
-    print(ingredients)
     url = f'https://api.spoonacular.com/recipes/findByIngredients?apiKey={SPOON_API}&ingredients={ingredients}'
     response = requests.get(url)
-    print(response.text)
     return response.text
 
 
@@ -39,5 +37,3 @@ def get_urls_from_ingridients(*ingridients_raw):
     ids = parse_answer_for_ids(raw_answer)
     urls = get_url_recipes(ids)
     return urls
-
-#print(get_url_recipes(parse_answer_for_ids(get_raw_answer_ids('egg', 'sugar'))))
