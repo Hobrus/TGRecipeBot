@@ -23,14 +23,15 @@ def parse_answer_for_ids(text):
     return recipe_ids
 
 
-def get_raw_answer_recipes(*ids):
-    ingredients = ingridients_raw[0]
-    for i in range(1, len(ingridients_raw)):
-        ingredients += ',+' + ingridients_raw[i]
-    print(ingredients)
-    url = f'https://api.spoonacular.com/recipes/{id}/information?apiKey={SPOON_API}'
-    response = requests.get(url)
-    print(response.text)
-    return response.text
+def get_url_recipes(*ids):
+    list_urls = []
+    for id in ids[0]:
+        url = f'https://api.spoonacular.com/recipes/{id}/information?apiKey={SPOON_API}'
+        response = requests.get(url)
+        recipes = json.loads(response.text)
+        url = recipes['sourceUrl']
+        list_urls.append(url)
+    return list_urls
 
-print(parse_answer(get_raw_answer('egg', 'sugar')))
+
+print(get_url_recipes(parse_answer_for_ids(get_raw_answer_ids('egg', 'sugar'))))
